@@ -1,3 +1,3 @@
 product :
   -name :
-  -flag :
+  -flag : (sale,new,feature)
