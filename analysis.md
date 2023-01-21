@@ -2,7 +2,10 @@ product :
   - name :
   - flag : (sale,new,feature)
   - image 
+  - images
   - price
   - sku
   - brand 
   - reviews
+  - tags
+  - simple description
