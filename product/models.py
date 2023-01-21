@@ -4,21 +4,48 @@ from django.db import models
 
 class Product(models.Model):
     pass
+    '''
+    name
+    image
+    flag
+    price
+    sku
+    brand
+    tags
+    subtitle
+    description
+    '''
 
 
 
 
 
-class images(models.Model):
+
+
+class ProductImages(models.Model):
     pass
+    '''
+    product,foreignkey
+    image
+
+    '''
 
 
 
-
-class brand(models.Model):
+class Brand(models.Model):
     pass
+    '''
+    name
+    image
+    '''
 
 
-
-class reviews(models.Model):
+class Reviews(models.Model):
     pass        
+    '''
+    user
+    product
+    reviews
+    date
+    rate
+    '''
