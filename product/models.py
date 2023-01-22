@@ -1,6 +1,8 @@
 from django.db import models
 from taggit.managers import TaggableManager
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -41,18 +43,15 @@ class ProductImages(models.Model):
 class Brand(models.Model):
     name = models.CharField(_('brand'), max_length=50)
     image = models.ImageField(_('image')upload_to='brand/')
-    '''
-    name
-    image
-    '''
+   
 
 
 class Reviews(models.Model):
-    pass        
-    '''
-    user
-    product
-    reviews
-    date
-    rate
-    '''
+    user = models.ForeignKey(User,verbose_name=_('user'),related_name='reviews_author',on_delete=models.SET_NULL, null=True , blank=True)
+    product = models.ForeignKey(Product,verbose_name=_('product') ,related_name='product_reviews',on_delete=models.CASCADE)
+    comment = models.CharField(_('comment'), max_length=200)
+    rate = models.IntegerField(_('rate')) 
+    created_at = models.DateTimeField(default=timezone.now)      
+   
+    def __str__(self):
+        return str(self.product)
