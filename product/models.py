@@ -20,40 +20,27 @@ class Product(models.Model):
     tags = TaggableManager()
     subtitle = models.TextField(_('subtitle'),max_length=500)
     description = models.TextField(_('description'),max_length=2000)
+    slug = models.SlugField(null=True,blank=True)
 
 
     def__str__(self):
         return self.name
-    '''
-    name
-    image
-    flag
-    price
-    sku
-    brand
-    tags
-    subtitle
-    description
-    '''
-
-
-
-
-
+   
 
 
 class ProductImages(models.Model):
-    pass
-    '''
-    product,foreignkey
-    image
+    product = models.ForeignKey(Product,verbose_name=_('product') ,related_name='product_image',on_delete=models.CASCADE)
+    image = models.ImageField(_('image')upload_to='product_images/')
 
-    '''
+    def __str__(self):
+        return str(self.product)
+
 
 
 
 class Brand(models.Model):
-    pass
+    name = models.CharField(_('brand'), max_length=50)
+    image = models.ImageField(_('image')upload_to='brand/')
     '''
     name
     image

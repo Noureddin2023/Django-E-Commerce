@@ -9,3 +9,5 @@ product :
   - reviews
   - tags
   - simple description
+  - full description
+  - related
