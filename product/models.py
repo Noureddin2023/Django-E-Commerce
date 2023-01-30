@@ -42,8 +42,6 @@ class ProductImages(models.Model):
         return str(self.product)
 
 
-
-
 class Brand(models.Model):
     name = models.CharField(_('brand'), max_length=50)
     image = models.ImageField(_('image'),upload_to='brand/')
