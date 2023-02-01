@@ -10,10 +10,11 @@ class ProductImagesAdmin(admin.TabularInline):
     model = ProductImages
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display= ['name','brand', 'price']
+    list_display= ['id','name','brand', 'price']
     list_filter = ['brand','price']
     inlines = [ProductImagesAdmin]
     search_fields = ['name','subtitle','description']
+    list_editable = ['name','brand', 'price']
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ['user', 'product', 'rate','comment','created_at']
