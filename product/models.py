@@ -23,6 +23,7 @@ class Product(models.Model):
     tags = TaggableManager()
     subtitle = models.TextField(_('subtitle'),max_length=500)
     description = models.TextField(_('description'),max_length=2000)
+    quantity = models.IntegerField()
     slug = models.SlugField(null=True,blank=True)
 
 
@@ -41,7 +42,7 @@ class ProductImages(models.Model):
     def __str__(self):
         return str(self.product)
 
-
+            
 class Brand(models.Model):
     name = models.CharField(_('brand'), max_length=50)
     image = models.ImageField(_('image'),upload_to='brand/')
