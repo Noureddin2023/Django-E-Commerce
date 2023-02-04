@@ -32,6 +32,7 @@ class CartDetail(models.Model):
         return str(self.cart)
 
 ORDER_STATUS=(
+    
     ('Recieved' , 'Recieved') ,
     ('Processed' , 'Processed') ,
     ('Shipped' , 'Shipped') ,
