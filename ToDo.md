@@ -17,3 +17,4 @@
 - testing
 - deploy
 - aws
+- vuejs basics
