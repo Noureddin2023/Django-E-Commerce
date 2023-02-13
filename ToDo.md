@@ -1,5 +1,3 @@
-- brand detail : pagination
-
 - queryset API -----> debuging
 - users
 - dashboard : charts
@@ -7,7 +5,6 @@
 - checkout
 - coupons
 - home
-
 - payment
 - ajax
 - celery
@@ -23,3 +20,4 @@
 
 - generate dummy data 
 - nav , footer
+- brand detail : pagination

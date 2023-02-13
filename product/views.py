@@ -2,6 +2,19 @@ from django.shortcuts import render
 from django.views.generic import ListView , DetailView
 from django.db.models import Count
 from .models import Product , Brand
+from django.db.models import Q , F
+
+
+
+def query_Debug(request):
+    #data = Product.objects.filter(name__contains='noah',price__gt=70)
+    #data = Product.objects.filter(price=F('quantity'))
+    # data = Product.objects.filter(Q(name__contains='noah') & Q(price__gt=70))  
+    #data = Product.objects.filter(price__gt=70).order_by('name').reverse()
+    #data = Product.objects.order_by('name')
+    data = Product.objects.select_related('brand').all()
+    data = Product.objects.prefetch_related('brand').all()## many to many
+    return render(request,'product/productlist.html',{'data':data})
 
 
 class ProductList(ListView):
@@ -10,7 +23,7 @@ class ProductList(ListView):
 
 
 class ProductDetail(DetailView):
-    model = Product
+    model = Product 
 
 
 class BrandList(ListView):
