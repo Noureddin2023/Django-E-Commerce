@@ -3,6 +3,8 @@ from taggit.managers import TaggableManager
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.utils.text import slugify
+from django.db.models.aggregates import Avg
 
 # Create your models here.
 
@@ -22,12 +24,21 @@ class Product(models.Model):
     tags = TaggableManager()
     subtitle = models.TextField(_('subtitle'),max_length=500)
     description = models.TextField(_('description'),max_length=2000)
+    quantity = models.IntegerField()
     slug = models.SlugField(null=True,blank=True)
 
 
     def __str__(self):
         return self.name
    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Product, self).save(*args, **kwargs)
+
+      #instance methods
+    def get_avg_rate(self):
+        avg = self.product_review.aggregate(rate_Avg=Avg('rate'))   
+        return avg  
 
 
 class ProductImages(models.Model):
@@ -37,14 +48,18 @@ class ProductImages(models.Model):
     def __str__(self):
         return str(self.product)
 
-
-
-
+            
 class Brand(models.Model):
     name = models.CharField(_('brand'), max_length=50)
     image = models.ImageField(_('image'),upload_to='brand/')
-   
-
+    slug = models.SlugField(null=True,blank=True)
+    
+    def __str__(self):
+        return self.name
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Brand, self).save(*args, **kwargs)
 
 class Reviews(models.Model):
     user = models.ForeignKey(User,verbose_name=_('user'),related_name='reviews_author',on_delete=models.SET_NULL, null=True , blank=True)
