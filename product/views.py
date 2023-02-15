@@ -1,29 +1,59 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.views.generic import ListView , DetailView
 from django.db.models import Count
 from .models import Product , Brand
-from django.db.models import Q , F
+from django.db.models import Q , F ,Value , Func , ExpressionWrapper , FloatField , DecimalField
 
 
-
+from django.db.models.aggregates import Sum , Avg , Min , Max , Count
+from django.db.models.functions import Concat
+from .forms import ProductReviewForm
+ 
 def query_Debug(request):
     #data = Product.objects.filter(name__contains='noah',price__gt=70)
     #data = Product.objects.filter(price=F('quantity'))
-    # data = Product.objects.filter(Q(name__contains='noah') & Q(price__gt=70))  
+    #data = Product.objects.filter(Q(name__contains='noah') & Q(price__gt=70))  
     #data = Product.objects.filter(price__gt=70).order_by('name').reverse()
     #data = Product.objects.order_by('name')
-    data = Product.objects.select_related('brand').all()
-    data = Product.objects.prefetch_related('brand').all()## many to many
+    #data = Product.objects.select_related('brand').all()
+    #data = Product.objects.prefetch_related('brand').all()## many to many
+    #data = Product.objects.aggregate(min_price=Min('price'),avg_price=Avg('price'))
+    
+    #data = Product.objects.annotate(
+        #full_name=Func(F('name'),F('flag'),function=('CONCAT')))
+
+    #data = Product.objects.annotate(
+        #full_name=Concat('name',Value(' '),'flag'))
+
+    dis_price = ExpressionWrapper(F('price')*.8,output_field=DecimalField())
+
+    data = Product.objects.annotate(discounted_price = dis_price)    
+    
+
+
     return render(request,'product/productlist.html',{'data':data})
 
 
 class ProductList(ListView):
     model = Product
-    paginate_by = 50
+    paginate_by = 50  
 
 
 class ProductDetail(DetailView):
     model = Product 
+
+        
+def add_review(request,slug):
+    product = Product.objects.get(slug=slug)
+    if request.method == 'POST':
+        form = ProductReviewForm(request.POST)
+        if form.is_valid():
+            myform = form.save(commit=False)
+            myform.user = request.user
+            myform.product = product 
+            myform.save()
+            
+    return redirect(f'/products/{product.slug}')
 
 
 class BrandList(ListView):
