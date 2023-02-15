@@ -13,4 +13,6 @@ urlpatterns = [
     path('<slug:slug>/add-review', add_review , name='add_review'),
     path('brands/' , BrandList.as_view() , name='brand_list'),
     path('brands/<slug:slug>', BrandDetail.as_view() , name='brand_detail'),
+    
 ]
+
