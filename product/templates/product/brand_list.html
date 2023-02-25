@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
- <link rel="stylesheet" href="{% static 'en/css/brand-list.css'%}">
+   <link rel="stylesheet" href="{% static 'en/css/brand-list.css'%}">
 {% endblock css %}
 
 {% block body %}
@@ -60,7 +60,7 @@
                       <div class="col all vegetables">
                          <div class="brand-wrap">
                              <div class="brand-media">
-                                 <img src="{{object.image.url}}" alt="brand">
+                                 <img src="{{object.image.url}}" alt="brand" style="width=203px; height=135px;">
                                  <div class="brand-overlay">
                                     <a href="{% url 'products:brand_detail' object.slug %}"><i class="fas fa-link"></i></a>
                                 </div>
@@ -73,28 +73,26 @@
                       </div>
                     {% endfor %}
                 </div>
-<<<<<<< HEAD
                 <div class="row">
-=======
                 {% if is_paginated %}
                   <div class="row">
->>>>>>> lecture06
                     <div class="col-lg-12">
                         <div class="bottom-paginate">
                             <p class="page-info">Showing 12 of 60 Results</p>
                             <ul class="pagination">
-<<<<<<< HEAD
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-long-arrow-alt-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">...</li>
-                                <li class="page-item"><a class="page-link" href="#">60</a></li>
-                                <li class="page-item">
+                                {% if page_obj.has_previous %}
+                                 <li class="page-item">
+                                     <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                         <i class="fas fa-long-arrow-alt-left"></i>
+                                     </a>
+                                 </li>
+                               {% endif %}
+                                 <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                 <li class="page-item">...</li>
+                                 <li class="page-item"><a class="page-link" href="#">60</a></li>
+                                 <li class="page-item">
                                     <a class="page-link" href="#">
                                         <i class="fas fa-long-arrow-alt-right"></i>
                                     </a>
@@ -103,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-=======
+
                                 {% if page_obj.has_previous %}
                                   <li class="page-item">
                                       <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
@@ -131,7 +129,7 @@
                     </div>
                   </div>
                 {% endif %}
->>>>>>> lecture06
+
             </div>
         </section>
         <!--=====================================

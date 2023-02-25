@@ -1,4 +1,4 @@
-- queryset API -----> debuging
+- 
 - users
 - dashboard : charts
 - cart
@@ -6,7 +6,6 @@
 - coupons
 - home
 - payment
-- ajax
 - celery
 - redis
 - docker
@@ -16,8 +15,10 @@
 - aws
 - vuejs basics
 ----------------------
-
-
+- ajax
+- queryset API -----> debuging
 - generate dummy data 
 - nav , footer
 - brand detail : pagination
+-----------------------------------------------------
+{%  url 'products:product_detail' product.slug %}

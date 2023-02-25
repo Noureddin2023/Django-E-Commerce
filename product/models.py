@@ -8,7 +8,7 @@ from django.db.models.aggregates import Avg
 
 # Create your models here.
 
-PRODUCT_FLAG = (
+PRODUCT_FLAG = (   
     ('Sale','Sales'),
     ('Feature','Feature'),
     ('New','New'),
