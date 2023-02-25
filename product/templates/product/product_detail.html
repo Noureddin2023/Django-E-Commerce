@@ -35,7 +35,7 @@
                     <div class="col-lg-6">
                         <div class="details-gallery">
                             <div class="details-label-group">
-                                <label class="details-label new">new</label>
+                                <label class="details-label new">{{object.flag}}</label>
                                 <label class="details-label off">-10%</label>
                             </div>
                             <ul class="details-preview"> 
@@ -218,7 +218,7 @@
                         <div class="product-card">
                             <div class="product-media">
                                 <div class="product-label">
-                                    <label class="label-text sale">sale</label>
+                                    <label class="label-text sale">{{object.flag}}</label>
                                 </div>
                                 <button class="product-wish wish">
                                     <i class="fas fa-heart"></i>
@@ -234,7 +234,7 @@
                             </div>
                             <div class="product-content">
                                 <div class="product-rating">
-                                    <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %} active {% endif %}"></i>
+                                        <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 0 %} active {% endif %}"></i>
                                         <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 1 %} active {% endif %}"></i>
                                         <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 2 %} active {% endif %}"></i>
                                         <i class="icofont-star {% if object.get_avg_rate.rate_Avg > 3 %} active {% endif %}"></i>
