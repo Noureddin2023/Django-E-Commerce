@@ -14,8 +14,9 @@ class BrandSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    brand = BrandSerializer()
+   # brand = BrandSerializer()
+   brand = serializers.StringRelatedField()
 
-    class Meta:
+   class Meta:
         model = Product
         fields = '__all__'
