@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import Product , Brand , ProductImages
+from django.db.models.aggregates import Avg
+
 
 
 class ProductImagesSerializer(serializers.ModelSerializer):
@@ -14,6 +16,7 @@ class ProductListSerializer(serializers.ModelSerializer):
    # brand = BrandSerializer()
    brand = serializers.StringRelatedField()
    price_with_tax = serializers.SerializerMethodField()
+   avg_rate= serializers.SerializerMethodField()
    #price_with_tax = serializers.SerializerMethodField(method_name='myfunc')
 
    class Meta:
@@ -22,7 +25,17 @@ class ProductListSerializer(serializers.ModelSerializer):
 
    def get_price_with_tax(self,product):
        return product.price*1.1    
-   
+
+   def get_avg_rate(self,product):
+        avg = product.product_review.aggregate(rate_Avg=Avg('rate'))   
+        avg_rate = avg['rate_Avg'] 
+        if avg_rate :
+            avg_rate = round(avg_rate,)
+        else:
+            avg_rate = 0
+        return avg_rate        
+
+
    #def myfunc(self,product):
        #return product.price*1.1
 
