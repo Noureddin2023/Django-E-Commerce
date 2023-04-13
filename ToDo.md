@@ -1,5 +1,4 @@
-- 
-- users
+
 - dashboard : charts
 - cart
 - checkout
@@ -14,11 +13,14 @@
 - deploy
 - aws
 - vuejs basics
+- sql
 ----------------------
 - ajax
 - queryset API -----> debuging
 - generate dummy data 
 - nav , footer
 - brand detail : pagination
+- transletion
+- users
 -----------------------------------------------------
 {%  url 'products:product_detail' product.slug %}
