@@ -5,7 +5,8 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" {% if LANGUAGE_CODE == 'ar' %} dir ="rtl" {% endif %}>
+    
     <head>
         <!--===================================== 
                     META TAG PART START
@@ -66,7 +67,7 @@
         
 
           {% block css %}
-              <link rel="stylesheet" href="{% static 'en/css/index.css' %}">
+              <link rel="stylesheet" href="{% static 'ar/css/index.css' %}">
           {% endblock css %}
         {% endif %}
 
